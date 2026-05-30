@@ -1,50 +1,31 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Transaksi Tunda Bayar</title>
-  
-  <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/2845/2845660.png" />
-  
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #eee;
-      overflow: hidden; /* Mencegah scroll ganda pada browser */
-    }
-
-    .iframe-container {
-      width: 100%;
-      height: 100dvh; /* Menggunakan dvh agar pas di mobile browser (mengantisipasi URL bar) */
-      overflow: hidden;
-    }
-
-    iframe {
-      display: block;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=https://script.google.com/macros/s/AKfycbx7t7Yez3kpW3zUJmtlcVXTudpOm63vr2FoGHB9gj_FE2-9HI67rlzU3vhaPU9hqCOLoA/exec">
+    <title>Transaksi Tunda Bayar</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            text-align: center; 
+            margin-top: 20%; 
+            background-color: #f4f4f9; 
+            color: #333;
+        }
+        .loading-box {
+            padding: 20px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-
-  <div class="iframe-container">
-    <iframe
-      id="app"
-      src="https://script.google.com/macros/s/AKfycbx7t7Yez3kpW3zUJmtlcVXTudpOm63vr2FoGHB9gj_FE2-9HI67rlzU3vhaPU9hqCOLoA/exec"
-      scrolling="yes"
-      allowfullscreen="true"
-      loading="lazy"
-      /* OPTIMASI: Membuka izin fitur krusial (submit form, script berjalan, popup dialog transaksi) */
-      sandbox="allow-top-navigation allow-scripts allow-forms allow-same-origin allow-popups allow-modals"
-      allow="fullscreen; camera; microphone; display-capture; geolocation;">
-    </iframe>
-  </div>
-
+    <div class="loading-box">
+        <h3>Menghubungkan ke Transaksi Tunda Bayar...</h3>
+        <p>Jika halaman tidak berpindah, <a href="https://script.google.com/macros/s/AKfycbx7t7Yez3kpW3zUJmtlcVXTudpOm63vr2FoGHB9gj_FE2-9HI67rlzU3vhaPU9hqCOLoA/exec">klik di sini untuk masuk</a>.</p>
+    </div>
 </body>
 </html>
