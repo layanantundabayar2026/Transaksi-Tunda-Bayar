@@ -1,191 +1,45 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transaksi Tunda Bayar</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg: #0f1117;
-            --card: #1a1d27;
-            --border: #2a2d3e;
-            --accent: #4f8ef7;
-            --accent-glow: rgba(79, 142, 247, 0.25);
-            --text: #e8eaf0;
-            --muted: #6b7094;
-            --success: #34d399;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tukaran - Lembur</title>
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
 
-        body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
+    .iframe-container {
+      width: 100%;
+      height: 100dvh;
+      overflow: hidden;
+    }
 
-        body::before {
-            content: '';
-            position: fixed;
-            top: -30%; left: -20%;
-            width: 60%; height: 60%;
-            background: radial-gradient(ellipse, rgba(79,142,247,0.08) 0%, transparent 70%);
-            pointer-events: none;
-        }
-        body::after {
-            content: '';
-            position: fixed;
-            bottom: -20%; right: -10%;
-            width: 50%; height: 50%;
-            background: radial-gradient(ellipse, rgba(52,211,153,0.06) 0%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 48px 40px;
-            text-align: center;
-            max-width: 420px;
-            width: 90%;
-            box-shadow: 0 24px 64px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.03);
-            animation: fadeUp 0.6s ease both;
-        }
-
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(24px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
-        .icon-wrap {
-            width: 64px; height: 64px;
-            background: linear-gradient(135deg, rgba(79,142,247,0.15), rgba(52,211,153,0.1));
-            border: 1px solid rgba(79,142,247,0.3);
-            border-radius: 18px;
-            display: flex; align-items: center; justify-content: center;
-            margin: 0 auto 24px;
-            font-size: 28px;
-        }
-
-        h1 { font-size: 1.35rem; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.3px; }
-
-        .subtitle {
-            font-size: 0.875rem; color: var(--muted);
-            margin-bottom: 32px; line-height: 1.6;
-        }
-
-        .progress-track {
-            background: var(--border); border-radius: 99px;
-            height: 4px; overflow: hidden; margin-bottom: 10px;
-        }
-        .progress-fill {
-            height: 100%; border-radius: 99px;
-            background: linear-gradient(90deg, var(--accent), var(--success));
-            width: 0%; transition: width 0.1s linear;
-        }
-
-        .countdown-text { font-size: 0.8rem; color: var(--muted); margin-bottom: 28px; }
-        .countdown-text span { color: var(--accent); font-weight: 600; }
-
-        .btn {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: var(--accent); color: #fff;
-            text-decoration: none;
-            padding: 13px 28px; border-radius: 12px;
-            font-size: 0.9rem; font-weight: 600;
-            transition: transform 0.15s, box-shadow 0.15s;
-            box-shadow: 0 4px 20px var(--accent-glow);
-            border: none; cursor: pointer;
-            font-family: inherit;
-        }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(79,142,247,0.4); }
-        .btn:active { transform: translateY(0); }
-        .btn-arrow { transition: transform 0.15s; }
-        .btn:hover .btn-arrow { transform: translateX(3px); }
-
-        .redirecting-badge {
-            display: inline-flex; align-items: center; gap: 6px;
-            background: rgba(52,211,153,0.1);
-            border: 1px solid rgba(52,211,153,0.3);
-            color: var(--success); font-size: 0.78rem; font-weight: 600;
-            padding: 5px 12px; border-radius: 99px; margin-bottom: 20px;
-        }
-        .dot {
-            width: 7px; height: 7px; border-radius: 50%;
-            background: var(--success); animation: pulse 1.2s ease infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50%       { opacity: 0.5; transform: scale(0.7); }
-        }
-
-        .footer-note { margin-top: 20px; font-size: 0.75rem; color: var(--muted); }
-        .footer-note a { color: var(--accent); text-decoration: none; }
-        .footer-note a:hover { text-decoration: underline; }
-    </style>
+    iframe {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="icon-wrap">💳</div>
-    <h1>Transaksi Tunda Bayar</h1>
-    <p class="subtitle">Menghubungkan ke sistem pembayaran.<br>Anda akan diarahkan otomatis dalam beberapa detik.</p>
-
-    <div class="redirecting-badge">
-        <span class="dot"></span> Mengarahkan…
-    </div>
-
-    <div class="progress-track">
-        <div class="progress-fill" id="progressFill"></div>
-    </div>
-    <p class="countdown-text">Otomatis dalam <span id="countNum">3</span> detik</p>
-
-    <button class="btn" id="manualBtn" onclick="goNow()">
-        Masuk Sekarang <span class="btn-arrow">→</span>
-    </button>
-
-    <p class="footer-note">
-        Atau buka langsung:
-        <a href="https://script.google.com/macros/s/AKfycbx7t7Yez3kpW3zUJmtlcVXTudpOm63vr2FoGHB9gj_FE2-9HI67rlzU3vhaPU9hqCOLoA/exec"
-           target="_top">klik tautan ini</a>
-    </p>
-</div>
-
-<script>
-    const TARGET = "https://script.google.com/macros/s/AKfycbx7t7Yez3kpW3zUJmtlcVXTudpOm63vr2FoGHB9gj_FE2-9HI67rlzU3vhaPU9hqCOLoA/exec";
-
-    function goNow() {
-        // top-level navigation — keluar dari iframe jika ada
-        window.top.location.href = TARGET;
-    }
-
-    const fill = document.getElementById("progressFill");
-    const countEl = document.getElementById("countNum");
-    const DURATION = 3000;
-    let start = null;
-
-    function step(ts) {
-        if (!start) start = ts;
-        const elapsed = ts - start;
-        const pct = Math.min((elapsed / DURATION) * 100, 100);
-        fill.style.width = pct + "%";
-        const secLeft = Math.ceil((DURATION - elapsed) / 1000);
-        countEl.textContent = secLeft > 0 ? secLeft : 0;
-        if (elapsed < DURATION) {
-            requestAnimationFrame(step);
-        } else {
-            goNow();
-        }
-    }
-    requestAnimationFrame(step);
-</script>
+  <div class="iframe-container">
+    <iframe
+      src="https://script.google.com/macros/s/AKfycbx7t7Yez3kpW3zUJmtlcVXTudpOm63vr2FoGHB9gj_FE2-9HI67rlzU3vhaPU9hqCOLoA/exec"
+      allow="fullscreen; camera; microphone; geolocation; display-capture"
+      allowfullscreen>
+    </iframe>
+  </div>
 
 </body>
 </html>
